@@ -1,0 +1,31 @@
+{
+  version = 1
+  sql_table_name = tap_covid_19.risk_area
+  name = risk_area
+  columns {
+    country {
+      primary_key = true
+      hidden = true
+      type = string
+      sql = "{{table}}.account_id"
+    }
+    country {
+      label = Country
+      description = Country
+      type = string
+      sql = "{{table}}.country"
+    }
+    deaths {
+      label = Deaths
+      description = Deaths
+      type = integer
+      sql = "{{table}}.deaths"
+    }
+    risk_level {
+      label = Risk Level
+      description = Risk Level
+      type = string
+      sql = "{{table}}.risk_level"
+    }
+  }
+}

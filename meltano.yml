@@ -1,0 +1,56 @@
+version: 1
+send_anonymous_usage_stats: false
+project_id: 8ad81739-18fa-47b8-9360-ac4728e75b84
+plugins:
+  extractors:
+  - name: tap-covid-19
+    namespace: tap_covid_19
+    pip_url: git+https://github.com/singer-io/tap-covid-19.git
+    executable: tap-covid-19
+    capabilities:
+    - catalog
+    - discover
+    - state
+    settings:
+    - name: api_token
+      env: TAP_COVID_19_API_TOKEN
+    - name: user_agent
+      env: TAP_COVID_19_USER_AGENT
+    - name: start_date
+      env: TAP_COVID_19_START_DATE
+    select:
+    - eu_daily.deaths
+    - eu_ecdc_daily.*
+    - eu_daily.date
+    - eu_ecdc_daily.*
+    - eu_daily.date
+    - eu_daily.country
+    - eu_daily.cases
+    - eu_daily.deaths
+    - '!*.git_*'
+    config:
+      start_date: '2020-06-01T00:00:00Z'
+      user_agent: tap-covid-19 via meltano md.musfiqurcse@outlook.com
+  loaders:
+  - name: target-postgres
+    pip_url: git+https://github.com/meltano/target-postgres.git
+    config:
+      dbname: $PG_DATABASE
+      host: $PG_HOST
+      password: $PG_PASSWORD
+      user: $PG_USER
+      port: $PG_PORT
+      schema: $PG_SCHEMA
+  transformers:
+  - name: dbt
+    pip_url: dbt==0.16.1
+  files:
+  - name: dbt
+    pip_url: git+https://gitlab.com/meltano/files-dbt.git
+schedules:
+- name: covid-19-to-postgres
+  extractor: tap-covid-19
+  loader: target-postgres
+  transform: run
+  interval: '@once'
+  start_date: 2020-06-01 00:00:00

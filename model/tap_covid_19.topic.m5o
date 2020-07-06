@@ -1,0 +1,14 @@
+{
+  version = 1
+  name = custom_risk_area
+  plugin_namespace = tap_covid_19
+  label = Risk Area
+  designs {
+    risk_area {
+      label = Risk Area
+      from = risk_area
+      description = Risk Area
+      
+    }
+  }
+}
