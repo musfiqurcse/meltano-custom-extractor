@@ -21,6 +21,8 @@ clean-targets:
 - dbt_modules
 - logs
 models:
-  enabled: true
   tap_covid_19: 
-    materialized: table
+    transform:
+      materialized: table
+    vars:
+      schema: "{{ env_var('DBT_TARGET_SCHEMA') }}"

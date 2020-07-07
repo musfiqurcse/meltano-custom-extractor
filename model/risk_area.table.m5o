@@ -1,6 +1,6 @@
 {
   version = 1
-  sql_table_name = tap_covid_19.risk_area
+  sql_table_name = risk_area
   name = risk_area
   columns {
     country {
