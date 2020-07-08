@@ -3,6 +3,13 @@
   sql_table_name = risk_area
   name = risk_area
   columns {
+    case_date {
+      label = Case Date
+      description = Case Date
+      type = string
+      sql = "{{table}}.case_date"
+    }
+
     country {
       label = Country
       description = Country
