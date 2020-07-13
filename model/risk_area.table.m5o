@@ -30,6 +30,27 @@
       type = sum
       sql = "{{table}}.deaths"
     }
+    max_deaths {
+      label = Max Death
+      description = Max Death
+      type = max
+      sql = "{{table}}.deaths"
+    }
+   
+    min_deaths {
+      label = Min Death
+      description = Min Death
+      type = min
+      sql = "{{table}}.deaths"
+    }
+
+    
+    mean_deaths {
+      label = Avg Death
+      description = Avg Death
+      type = avg
+      sql = "{{table}}.deaths"
+    }
   }
 
 }

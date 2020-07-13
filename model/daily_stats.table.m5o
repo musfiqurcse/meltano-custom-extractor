@@ -1,0 +1,35 @@
+{
+  version = 1
+  sql_table_name = daily_stats
+  name = daily_stats
+  columns {
+    date {
+      label = Date
+      description = Date
+      type = string
+      sql = "{{table}}.date"
+    }
+
+    country {
+      label = Country
+      description = Country
+      type = string
+      sql = "{{table}}.country"
+    }
+  }
+  aggregates {
+    case_increase_percentage {
+      label = Case Increase Percentage
+      description = Case Increase Percentage
+      type = avg
+      sql = "{{table}}.case_increase_percentage"
+    }
+    death_increase_percentage {
+      label = Death Increase Percentage
+      description = Death Increase Percentage
+      type = avg
+      sql = "{{table}}.death_increase_percentage"
+    }
+  }
+
+}

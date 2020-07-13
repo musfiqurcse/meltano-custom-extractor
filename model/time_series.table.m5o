@@ -1,0 +1,59 @@
+{
+  version = 1
+  sql_table_name = time_series
+  name = time_series
+  columns {
+    date {
+      label = Date
+      description = Date
+      type = string
+      sql = "{{table}}.case_date"
+    }
+
+    country {
+      label = Country
+      description = Country
+      type = string
+      sql = "{{table}}.country"
+    }
+  }
+   timeframes {
+    month_start {
+      label = Date
+      sql = "{{table}}.date"
+      type = date
+      periods = [
+        { name = date, label = Date, part = DATE }
+      ]
+    }
+  }
+
+  aggregates {
+    france_case_increase_percentage {
+      label = France Case Increase Percentage
+      description = France Case Increase Percentage
+      type = avg
+      sql = "{{table}}.france_case_increase_percentage"
+    }
+
+    deutschland_case_increase_percentage {
+      label = Deutschland Case Increase Percentage
+      description = Deutschland Case Increase Percentage
+      type = avg
+      sql = "{{table}}.deutschland_case_increase_percentage"
+    }
+    france_death_increase_percentage {
+      label = France Death Increase Percentage
+      description = France Death Increase Percentage
+      type = avg
+      sql = "{{table}}.france_death_increase_percentage"
+    }
+    deutschland_death_increase_percentage {
+      label = Deutschland Death Increase Percentage
+      description = Deutschland Death Increase Percentage
+      type = avg
+      sql = "{{table}}.deutschland_death_increase_percentage"
+    }
+  }
+
+}

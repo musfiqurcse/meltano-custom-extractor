@@ -10,5 +10,19 @@
       description = Risk Area
       
     }
+
+
+    daily_stats {
+      label = Deutschland Daily Stats
+      from = daily_stats
+      description = Deutschland Daily Stats
+      
+    }
+    time_series {
+      label = Time Series Daily Stats
+      from = time_series
+      description = Time Series Daily Stats
+      
+    }
   }
 }
